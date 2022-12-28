@@ -1,8 +1,11 @@
 img{
     width: auto;
-    height: 300px;
+    height: 400px;
     border-radius: 5px ;
 }
 .col {
     text-align: center;
+}
+input{
+    width: 60%;
 }
