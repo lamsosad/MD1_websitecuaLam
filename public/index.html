@@ -155,33 +155,41 @@
     </div>
     <!--        cards-->
     <hr>
-    <div id="display">
-        <script>
-            let listProduct = JSON.parse(localStorage.getItem("listProduct"))
-            let listSearch = [];
-            if (listProduct === null) {
-                listProduct = [];
-            }
+    <div>
+
+        <h1 style="background-color: red; color: white">Phone Update</h1></div>
+
+    <div class="container">
+        <div class="row" id="display">
+
+        </div>
+    </div>
+    <script>
+
+        let listProduct = JSON.parse(localStorage.getItem("listProduct"))
+        let listSearch = [];
+        if (listProduct === null) {
+            listProduct = [];
+        }
 
 
-            function showDisplay() {
-                let drawDisplay = '';
-                for (let i = 0; i < listProduct.length; i++) {
-                    drawDisplay += `
-                    <h1 style="background-color: red; color: white">Phone Update</h1>
-                    <div class="col">
-                    <img src="${listProduct[i].image}" alt=""><br>
+        function showDisplay() {
+            let drawDisplay = '';
+            for (let i = 0; i < listProduct.length; i++) {
+                drawDisplay += `
+                    <div class="col-3">
+                    <img class="img-fluid" src="${listProduct[i].image}" alt=""><br>
                     <b>${listProduct[i].name}</b>
                     <p>${'Price: ' + listProduct[i].price + ' $'}</p>
                 </div>
             `
-                }
-                document.getElementById('display').innerHTML = drawDisplay;
             }
-            showDisplay()
+            document.getElementById('display').innerHTML = drawDisplay;
+        }
 
-        </script>
-    </div>
+        showDisplay()
+    </script>
+
 
     <hr>
     <h3 style="text-align: center; background-color: cornsilk">Iphone</h3>
@@ -465,12 +473,22 @@
 <!--phần js và bootrap js-->
 <script>
     let user = JSON.parse(localStorage.getItem('user'));
+    let user2 = 'lam2003';
     if (user != null) {
-        document.getElementById("elementLogin").innerHTML = `<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">${user.username}</a>
+        if (user.username === user2) {
+            document.getElementById("elementLogin").innerHTML = `<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">${user.username}</a>
 <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+<li><a class="dropdown-item" onclick="logOut()">Log Out</a></li>
 <li><a class="dropdown-item" href="product.html">Update</a></li>
+</ul>`
+
+        } else {
+            document.getElementById("elementLogin").innerHTML = `<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">${user.username}</a>
+<ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
 <li><a class="dropdown-item" onclick="logOut()">Log Out</a></li>
 </ul>`
+        }
+
     } else {
         document.getElementById("elementLogin").innerHTML = `<a class="nav-link" href="login.html"><b>Login</b></a>`
     }

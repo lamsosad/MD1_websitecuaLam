@@ -153,11 +153,13 @@
         <input type="text" class="form-control" id="nameProduct" placeholder="Name phone..." aria-label="Username"
                aria-describedby="basic-addon1">
     </div>
+
     <div class="input-group mb-3">
         <span class="input-group-text">Price</span>
         <input type="number" class="form-control" id="price" placeholder="Price..." aria-label="Username"
                aria-describedby="basic-addon1">
     </div>
+    <p style="color: red; text-align: center" id="fail2"></p>
     <div>
         <button type="button" onclick="creatProduct()" class="btn btn-primary menu_product-btn">Creat</button>
     </div>
@@ -194,7 +196,6 @@
     </table>
     <script>
         let listProduct = JSON.parse(localStorage.getItem("listProduct"))
-        let listSearch = [];
         if (listProduct === null) {
             listProduct = [];
         }
@@ -221,7 +222,9 @@
             let image = getImage();
             let nameProduct = document.getElementById('nameProduct').value;
             let price = document.getElementById('price').value;
-            if (listProduct.length === 0) {
+            if (nameProduct == '' && price == '') {
+                document.querySelector('#fail2').innerText = 'Khong duoc de trong!';
+            } else if (listProduct.length === 0) {
                 id = 1
             } else {
                 id = listProduct[listProduct.length - 1].id + 1;
@@ -272,32 +275,7 @@
             showListProduct()
         }
 
-        // function actionSearch(){
-        //     let search = document.getElementById('search').value
-        //     if (search.trim()===''){
-        //         showListProduct()
-        //     }else {
-        //         for (let i = 0; i < listProduct.length; i++) {
-        //             if (search === listProduct[i]){
-        //                 listSearch.push(listProduct[i])
-        //             }
-        //         }
-        //     }showListSearch()
-        // }
-        // function showListSearch(){
-        //     let drawTable = '';
-        //     for (let i = 0; i < listSearch.length; i++) {
-        //         drawTable += `<tr>
-        //             <td>${i + 1}</td>
-        //             <td>${listSearch[i].image}</td>
-        //             <td>${listSearch[i].nameProduct}</td>
-        //             <td>${listSearch[i].price}</td>
-        //             <td><button class="btn btn-primery" onclick="showUpdateModal(${listSearch[i].id})" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="${listSearch.nameProduct}"><i class="bi bi-pen"></button></td>
-        //             <td><button class="btn btn-primery" onclick="deleteProduct(${i})" id=""><i class="bi bi-trash3-fill"></button></td>
-        //           </tr>`
-        //     }
-        //     document.querySelector(".draw-table").innerHTML = drawTable
-        // }
+
     </script>
 
 </div>
