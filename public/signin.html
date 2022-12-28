@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in</title>
+
+        <script src="student-manage/User.js"></script>
+</head>
+<!--boostrap-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="product/sign.css">
+<!--html-->
+<body style="background-image: url('baiweb/image/6057300.jpg')">
+<div class="container">
+    <h3 style=" text-align: center; color: coral">SIGN IN</h3>
+
+    <div class="mb-3 row">
+        <label for="inputUsername" class="col-sm-2 col-form-label">User Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputUsername" oninput="validate()">
+            <p class="Text - danger" id="failUsername" style="color: red"></p>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputEmail" oninput="validate()">
+            <p class="Text - danger" id="failEmail" style="color: red"></p>
+        </div>
+
+    </div>
+    <div class="mb-3 row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPassword" oninput="validate()">
+            <p class="Text - danger" id="failPassword" style="color: red"></p>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="inputRePassword" class="col-sm-2 col-form-label">RePassword</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputRePassword" oninput="validate()">
+            <p class="Text - danger" id="failRepassword" style="color: red"></p>
+        </div>
+        <div class="text-center">
+            <button type="button" onclick="submitData()" class="btn btn-warning submitData">SUBMIT</button>
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+<!--code html-->
+<script>
+    let usernameInput = document.querySelector('#inputUsername');
+    let emailInput = document.querySelector('#inputEmail');
+    let passwordInput = document.querySelector('#inputPassword');
+    let rePassWord = document.querySelector('#inputRePassword');
+    let submit = document.querySelector('.submitData')
+    let isCheck;
+    let user;
+    let arr = JSON.parse(localStorage.getItem('listUser'));
+    if (arr == null) {
+        arr = [];
+    }
+
+    function validate() {
+
+        let check = true;
+        let username = usernameInput.value;
+        let email = emailInput.value;
+        let password = passwordInput.value;
+        let repassword = rePassWord.value;
+
+        const EMAIL_PATTERN = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/
+
+// username
+        if (username.trim() == '') {
+            document.querySelector('#failUsername').innerText = 'Khong duoc de trong!';
+            check = false;
+
+        } else if (username.length < 6) {
+            document.querySelector('#failUsername').innerHTML = 'Ten dang nhap toi thieu 6 ki tu!';
+            check = false;
+
+        } else if (checkUsernameEx(username)) {
+            document.querySelector('#failUsername').innerHTML = ' Ten dang ki da ton tai vui long thu lai!';
+            check = false;
+
+        } else {
+            document.querySelector('#failUsername').innerHTML = '';
+        }
+// email
+
+        if (email.trim() == '') {
+            document.querySelector('#failEmail').innerText = 'Khong duoc de trong!';
+            check = false;
+
+        } else if (!EMAIL_PATTERN.test(email)) {
+            document.querySelector('#failEmail').innerHTML = 'Email khong dung dinh dang!';
+            check = false;
+
+        } else if (checkEmailEx(email)) {
+            document.querySelector('#failEmail').innerHTML = 'Email da ton tai!';
+            check = false;
+
+        } else {
+            document.querySelector('#failEmail').innerHTML = '';
+        }
+
+        // password
+
+        if (password.trim() == '') {
+            document.querySelector('#failPassword').innerText = 'Khong duoc de trong!';
+            check = false;
+        } else if (password.length < 8) {
+            document.querySelector('#failPassword').innerHTML = 'Ten dang nhap toi thieu 8 ki tu!';
+            check = false;
+        } else if (!PASSWORD_PATTERN.test(password)) {
+            document.querySelector('#failPassword').innerHTML = 'Mat khau phai co chu in hoa va ki tu so!';
+            check = false;
+        } else {
+            document.querySelector('#failPassword').innerHTML = '';
+        }
+        // repassword
+
+        if (repassword.trim() == '') {
+            document.querySelector('#failRepassword').innerText = 'Khong duoc de trong!';
+            check = false;
+        } else if (repassword !== password) {
+            document.querySelector('#failRepassword').innerHTML = 'Khong trung khop';
+            check = false;
+        } else {
+            document.querySelector('#failRepassword').innerHTML = 'Trung khop';
+        }
+        if (check) {
+            isCheck = true;
+            user = new User(username, email, password)
+        } else {
+            isCheck = false;
+        }
+
+    }
+
+    function submitData() {
+        if (isCheck) {
+            arr.push(user)
+            localStorage.setItem('listUser', JSON.stringify(arr))
+            location.href = "login.html";
+        }
+    }
+
+    function checkUsernameEx(userNameCheck) {
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].username === userNameCheck) {
+                return true;
+                break;
+            }
+        }
+        return false;
+
+    }
+
+    function checkEmailEx(EmailCheck) {
+        for (let j = 0; j < arr.length; j++) {
+            if (arr[j].email === EmailCheck) {
+                return true;
+                break;
+            }
+        }
+        return false;
+
+    }
+
+    // boostrap link
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+</body>
+</html>
