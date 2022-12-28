@@ -40,9 +40,10 @@
 
 <script>
     let arr = JSON.parse(localStorage.getItem('listUser'));
-    if (arr==null){
-        arr=[];
+    if (arr == null) {
+        arr = [];
     }
+
     function login() {
         let check = false;
         let username = document.querySelector('#inputUsername').value;
@@ -59,17 +60,16 @@
             }
         }
         if (check) {
-            location.href = 'index.html'
+            location.href = 'index.html';
+            alert(username + ' Đã ' + ' đăng nhập thành công!');
         } else {
             document.querySelector('#fail').innerHTML = 'Tai khoan hoac mat khau khong dung!'
         }
     }
 
-function validate() {
-    
-}
-
-
+    function validate() {
+        console.log('-------->')
+    }
 </script>
 <!--// boostrap link-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
