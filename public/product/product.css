@@ -1,11 +1,15 @@
-img{
-    width: auto;
-    height: 400px;
-    border-radius: 5px ;
+.carousel-inner{
+    width: 80%;
+    height: 600px;
+    margin-left: 10%;
 }
 .col {
     text-align: center;
 }
 input{
     width: 60%;
+}
+
+img {
+    border-radius: 10px;
 }

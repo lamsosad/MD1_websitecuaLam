@@ -1,8 +1,8 @@
 .container{
     width: 700px;
     margin-top: 100px;
-    background-color: pink;
+    background-color: plum;
     border-radius: 20px;        /* độ cong của các góc */
-    border: 2px solid palevioletred;
+    border: 2px solid black;
     padding: 40px 20px;    /* khoang cach tu noi dung den border( mep le)*/
 }

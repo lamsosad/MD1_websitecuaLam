@@ -26,6 +26,13 @@
     <link rel="stylesheet" href="product/product.css">
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <script src="student-manage/product.js"></script>
+    <style>
+        button {
+            color: black;
+        }
+
+    </style>
+
 
 
 </head>
@@ -96,19 +103,19 @@
             </nav>
         </div>
 
-        <!--                        giỏ hàng-->
+        <!--                                giỏ hàng-->
 
         <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                 class="bi bi-cart"
-                 viewBox="0 0 16 16">
-                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-            </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-cart"
+                     viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg> <span></span>
         </div>
 
     </div>
 </nav>
-<h1 style="text-align: center">Webcome to BL-Apple Store! </h1>
+<h1 style="text-align: center; background-color: orange">Webcome to BL-Apple Store! </h1>
 
 
 <!--phần ảnh quảng cáo///////////////////////////////////////////////////////////////////////////-->
@@ -125,7 +132,7 @@
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
                     aria-label="Slide 3"></button>
         </div>
-        <div class="carousel-inner" style="width: 80%; margin-left: 10%">
+        <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="baiweb/image/iphone-14-sliding-newgia.webp"
                      class="d-block w-100"
@@ -133,11 +140,11 @@
             </div>
 
             <div class="carousel-item">
-                <img src="baiweb/image/720-220-720x220-213.webp" class="d-block w-100"
+                <img src="baiweb/image/2-1662622684.jpg" class="d-block w-100"
                      alt="...">
             </div>
             <div class="carousel-item">
-                <img src="baiweb/image/mac-air-m1-t12.webp" class="d-block w-100"
+                <img src="baiweb/image/imagebackrought/iphone/iphone-14-plus-tgdd-1-211_1280x720-800-resize.jpg" class="d-block w-100"
                      alt="...">
             </div>
 
@@ -157,275 +164,17 @@
     <hr>
     <div>
 
-        <h1 style="background-color: red; color: white">Phone Update</h1></div>
+        <h1 style="background-color: orange; color: white">Product</h1></div>
 
     <div class="container">
         <div class="row" id="display">
 
         </div>
     </div>
-    <script>
-
-        let listProduct = JSON.parse(localStorage.getItem("listProduct"))
-        let listSearch = [];
-        if (listProduct === null) {
-            listProduct = [];
-        }
-
-
-        function showDisplay() {
-            let drawDisplay = '';
-            for (let i = 0; i < listProduct.length; i++) {
-                drawDisplay += `
-                    <div class="col-3">
-                    <img class="img-fluid" src="${listProduct[i].image}" alt=""><br>
-                    <b>${listProduct[i].name}</b>
-                    <p>${'Price: ' + listProduct[i].price + ' $'}</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            `
-            }
-            document.getElementById('display').innerHTML = drawDisplay;
-        }
-
-        showDisplay()
-    </script>
-
-
     <hr>
-    <h3 style="text-align: center; background-color: cornsilk">Iphone</h3>
-    <hr>
-
-    <div style="width: 90%; height: auto; margin-left: 5%" class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/iphone/14_1_9_2_9.webp"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Iphone 13 Mini</h5>
-                    <p class="card-text">Price: 1800$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/iphone/iphone12-digitalmat-gallery-1-202111_GEO_US.png"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Iphone 12</h5>
-                    <p class="card-text">Price: 2280$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/iphone/iphone14pro-digitalmat-gallery-1-202209_GEO_US.png"
-                     alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Iphone 14 Pro Max</h5>
-                    <p class="card-text">Price: 2500$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div style="width: 90%; height: auto; margin-left: 5%" class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/iphone/tim.jpg"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Iphone 11</h5>
-                    <p class="card-text">Price: 1980$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/iphone/gold.jpg"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Iphone 7 Plus</h5>
-                    <p class="card-text">Price: 990$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/iphone/_en_5_1_2_1_1_1.webp" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Iphone SE 2022</h5>
-                    <p class="card-text">Price: 1600$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <hr>
-    <h3 style="text-align: center; background-color: cornsilk">Apple Watch</h3>
-    <hr>
-
-
-    <div style="width: 90%; height: auto; margin-left: 5%" class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/applewatch/watch-s8-digitalmat-gallery-3-202209_GEO_US.png"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Apple Watch S8</h5>
-                    <p class="card-text">Price: 1000$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/applewatch/watch-se-digitalmat-gallery-1-202209_GEO_US.png"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Apple Watch SE</h5>
-                    <p class="card-text">Price: 980$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/applewatch/watch-ultra-digitalmat-gallery-3-202209_GEO_US.png"
-                     alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Apple Watch Ultra</h5>
-                    <p class="card-text">Price: 2000$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <hr>
-    <h3 style="text-align: center; background-color: cornsilk">Ipad</h3>
-    <hr>
-
-    <div style="width: 90%; height: auto; margin-left: 5%" class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/ipad/ipad-digitalmat-gallery-1-202210.png"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Ipad Air</h5>
-                    <p class="card-text">Price: 1400$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/ipad/ipad-mini-digitalmat-gallery-1-202111.png"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Ipad Mini</h5>
-                    <p class="card-text">Price: 1280$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/ipad/ipadpro11-digitalmat-gallery-1-202210.png" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Ipad Pro</h5>
-                    <p class="card-text">Price: 2200$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <hr>
-    <h3 style="text-align: center; background-color: cornsilk">Imac & Macbook</h3>
-    <hr>
-
-    <div style="width: 90%; height: auto; margin-left: 5%" class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/macbook/imac24-digitalmat-gallery-1-202111.png"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Imac 24 inch</h5>
-                    <p class="card-text">Price: 3400$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/macbook/mac-mini-digitalmat-gallery-3-202111.png"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Mac Mini</h5>
-                    <p class="card-text">Price: 2280$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/macbook/studio-display-digitalmat-gallery-1-202203.png"
-                     alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Display Apple</h5>
-                    <p class="card-text">Price: 3200$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div style="width: 90%; height: auto; margin-left: 5%" class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/macbook/macbook-air-digitalmat-gallery-1-202206.png"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Macbook Air</h5>
-                    <p class="card-text">Price: 2600$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/macbook/mbp-14-digitalmat-gallery-1-202111.png"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Macbook Pro 14 inch</h5>
-                    <p class="card-text">Price: 3800$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="baiweb/image/imagebackrought/macbook/mbp-digitalmat-gallery-1-202206.png" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Macbook Pro 13 inch</h5>
-                    <p class="card-text">Price: 3600$</p>
-                    <p><button style="border-radius: 5px" onclick="">BUY</button></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</section>
+<!--ảnh to -->
+    <h2 style="background-color: orange">Introduce</h2>
+    <div><img src="baiweb/image/imagebackrought/military-landing-202209.png" height="auto" width="80%"/></div></section>
 
 
 <!--    phần footer-->
@@ -491,6 +240,78 @@
 </footer>
 <!--phần js và bootrap js-->
 <script>
+
+    let listProduct = JSON.parse(localStorage.getItem("listProduct"))
+    let listSearch = [];
+    if (listProduct === null) {
+        listProduct = [];
+    }
+
+
+    function showDisplay() {
+        let drawDisplay = '';
+        for (let i = 0; i < listProduct.length; i++) {
+            drawDisplay += `
+                    <div class="col-3">
+                    <img style="width: auto; height: 200px" class="img-fluid" src="${listProduct[i].image}" alt=""><br>
+                    <a>${listProduct[i].name}</a>
+                    <p>${'Price: ' + listProduct[i].price + ' $'}</p>
+                    <p><button class="btn btn-outline-warning" style="border-radius: 5px;" onclick="themvao(${listProduct[i].id})">BUY</button></p>
+                </div>
+            `
+        }
+        document.getElementById('display').innerHTML = drawDisplay;
+    }
+
+    showDisplay()
+</script>
+<script>
+    let listCart = JSON.parse(localStorage.getItem('list_cart'))
+    if (listCart == null) {
+        listCart = [];
+    }
+
+    function finndById(id) {
+        for (let i = 0; i < listProduct.length; i++) {
+            if (id === listProduct[i].id) {
+                return listProduct[i];
+            }
+        }
+    }
+
+    function themvao(id) {
+        let elementC = finndById(id);
+        console.log(elementC)
+        if (listCart.length == 0) {
+            listCart.push({
+                'product': elementC,
+                'quantify': 1
+            })
+        } else {
+            let checkE = false;
+            for (let i = 0; i < listCart.length; i++) {
+                if (listCart[i].product.id == id) {
+                    checkE = true;
+                    listCart[i].quantify += 1;
+                    break
+                }
+
+            }
+            if (!checkE) {
+                listCart.push({
+                    'product': elementC,
+                    'quantify': 1
+                })
+            }
+        }
+        localStorage.setItem('list_cart', JSON.stringify(listCart))
+        alert('Đã thêm vào giỏ hàng')
+
+    }
+</script>
+
+
+<script>
     let user = JSON.parse(localStorage.getItem('user'));
     let user2 = 'lam2003';
     if (user != null) {
@@ -499,12 +320,14 @@
 <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
 <li><a class="dropdown-item" onclick="logOut()">Log Out</a></li>
 <li><a class="dropdown-item" href="product.html">Update</a></li>
+<li><a class="dropdown-item" href="cart.html">My Cart</a></li>
 </ul>`
 
         } else {
             document.getElementById("elementLogin").innerHTML = `<a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">${user.username}</a>
 <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
 <li><a class="dropdown-item" onclick="logOut()">Log Out</a></li>
+<li><a class="dropdown-item" href="cart.html">My Cart</a></li>
 </ul>`
         }
 
@@ -517,7 +340,6 @@
         location.reload();
     }
 </script>
-
 <!--SHOW LIST PRODUCT-->
 <div class="container">
     <div class="row" id="draw-product">
