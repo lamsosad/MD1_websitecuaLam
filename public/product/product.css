@@ -1,7 +1,6 @@
 .carousel-inner{
-    width: 80%;
-    height: 600px;
-    margin-left: 10%;
+    width: auto;
+    height: 700px;
 }
 .col {
     text-align: center;
@@ -12,4 +11,8 @@ input{
 
 img {
     border-radius: 10px;
+}
+.responsive{
+    width: auto;
+    height: 200px;
 }

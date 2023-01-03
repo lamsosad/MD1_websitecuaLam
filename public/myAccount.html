@@ -19,27 +19,18 @@
     <meta charset="UTF-8">
 
 
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+
     <meta charset="UTF-8">
     <title>BL-Apple Store</title>
-    <link rel="stylesheet" href="product/product.css">
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script src="student-manage/product.js"></script>
     <style>
         table {
-            border: 3px solid black;
+            border: 2px solid black;
+            text-align: center;
         }
-
-        .cssweb {
-            border: 3px solid black;
-            background-color: darkseagreen;
-        }
-        input{
-            border-radius: 5px;
-        }
-
-
     </style>
-    <script src="student-manage/product.js"></script>
-
 </head>
 <body>
 <!--thanh navbar-->
@@ -65,191 +56,40 @@
                 <!--                thanh home-->
 
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html"><b>Home</b></a>
+                    <a class="nav-link active" aria-current="page" href="index.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-house-fill" viewBox="1 2 16 16">
+                            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
+                            <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
+                        </svg>
+                        <b>Home</b></a>
                 </li>
                 <li class="nav-item" id="elementLogin"></li>
                 </li>
-
-
             </ul>
-
-
         </div>
-
-        <!--                        giỏ hàng-->
-
-        <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                 class="bi bi-cart"
-                 viewBox="0 0 16 16">
-                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-            </svg>
-        </div>
-
     </div>
 </nav>
-<!--bảng hiển thị thông tin người mua-->
-<div class="container cssweb">
-    <h1 style="text-align: center"><b>Thông tin đặt hàng</b></h1>
-    <div style="text-align: center">
-        <table class="table container">
-            <tr>
-                <th>Name:</th>
-                <td><input id="nameBuy" type="text">
-                    <p class="Text - danger" id="failName" style="color: red"></p></td>
+<hr>
+<div class="container">
+    <h1 style="text-align: center"><b>Thông tin cá nhân</b></h1>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+        </tr>
+        <tbody id="showTable">
+        <tr>
+            <td></td>
+            <td></td>
+            <td id="updatePass"></td>
+        </tr>
+        </tbody>
+    </table>
 
-            </tr>
-            <tr>
-                <th>Email:</th>
-                <td><input id="emailBuy" type="text">
-                    <p class="Text - danger" id="failEmail" style="color: red"></p></td>
 
-            </tr>
-            <tr>
-                <th>Phone Number:</th>
-                <td><input id="phoneBuy" type="text">
-                    <p class="Text - danger" id="failPhone" style="color: red"></p></td>
-
-            </tr>
-            <tr>
-                <th>Home:</th>
-                <td><input id="homeBuy" type="text">
-                    <p class="Text - danger" id="failHome" style="color: red"></p></td>
-
-            </tr>
-        </table>
-
-        <hr>
-        <!--thông tin đơn hàng-->
-        <div class="container">
-            <table class="table">
-                <tr>
-                    <th>STT</th>
-                    <th>IMG</th>
-                    <th>NAME</th>
-                    <th>PRICE</th>
-                    <th>NUMBER</th>
-                    <th>TOTAL</th>
-                    <th>DELETE</th>
-                </tr>
-                <tbody id="showCart"></tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td id="SumAll"></td>
-                    <td></td>
-
-                </tr>
-            </table>
-        </div>
-    </div>
 </div>
-<div style="text-align: center">
-    <br>
-    <button style="background-color: cornflowerblue; border-radius: 5px" onclick="oder()">Oder</button>
-    <br>
-</div>
-<script>
-
-    let listCart = JSON.parse(localStorage.getItem('list_cart'));
-    if (listCart == null) {
-        listCart = [];
-    }
-
-    function showListC() {
-        let drawCart = '';
-        let sumAll = 0;
-        for (let i = 0; i < listCart.length; i++) {
-            let sum = listCart[i].product.price * listCart[i].quantify
-            console.log(listCart[i])
-            sumAll += sum;
-            drawCart += `<tr>
-                            <td>${i + 1}</td>
-                            <td><img src="${listCart[i].product.image}" width="100"></td>
-                            <td>${listCart[i].product.name}</td>
-                            <td>${listCart[i].product.price}</td>
-                            <td>${listCart[i].quantify}</td>
-                            <td>${sum}$</td>
-                            <td><button class="btn btn-primery" onclick="deleteProduct(${i})" id=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-  <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-</svg></button></td>
-
-</tr>`
-        }
-        document.getElementById('showCart').innerHTML = drawCart;
-        document.getElementById('SumAll').innerHTML = `<td><b>Tổng tiền:</b> ${sumAll}$</td>`
-
-    }
-
-    showListC()
-
-    function deleteProduct(i) {
-        listCart.splice(i, 1)
-        localStorage.removeItem("list_cart")
-        localStorage.setItem("list_cart", JSON.stringify(listCart))
-        showListC()
-    }
-
-
-    let isCheck;
-
-    function oder() {
-        let check = true;
-        let nameB = document.getElementById('nameBuy').value;
-        let email = document.getElementById('emailBuy').value;
-        let phone = document.getElementById('phoneBuy').value;
-        let home = document.getElementById('homeBuy').value;
-        const EMAIL_PATTERN = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        //namebuy
-        if (nameB.trim() == '') {
-            document.querySelector('#failName').innerHTML = 'Không được để trống!';
-            check = false
-
-        } else {
-            document.querySelector('#failName').innerHTML = '';
-        }
-        //email
-        if (email.trim() == '') {
-            document.querySelector('#failEmail').innerHTML = 'Không được để trống!';
-            check = false
-
-        } else if (!EMAIL_PATTERN.test(email)) {
-            document.querySelector('#failEmail').innerHTML = 'Email không được định dạng!';
-            check = false
-        } else {
-            document.querySelector('#failEmail').innerHTML = '';
-        }
-        //phone
-        if (phone.trim() == '') {
-            document.querySelector('#failPhone').innerHTML = 'Không được để trống!';
-            check = false
-        } else {
-            document.querySelector('#failPhone').innerHTML = '';
-        }
-        //home
-        if (home.trim() == '') {
-            document.querySelector('#failHome').innerHTML = 'Không được để trống!';
-            check = false
-        } else {
-            document.querySelector('#failHome').innerHTML = '';
-        }
-        if (check) {
-            isCheck = true;
-            alert(nameB + ' đã đặt hàng thành công! Ngồi nhà đợi nhá!!!')
-            localStorage.removeItem('list_cart')
-            location.href = "index.html"
-        } else {
-            isCheck = false;
-        }
-    }
-
-
-</script>
-
-
 <footer class="text-center text-lg-start bg-light text-muted">
     <section style="background-color: whitesmoke; padding-top: 20px">
         <div class="container text-center text-md-start mt-5">
@@ -310,8 +150,33 @@
         </div>
     </section>
 </footer>
-<!--SHOW LIST PRODUCT-->
 </body>
+<script>
+    let listAccount = JSON.parse(localStorage.getItem('listUser'))
+    if (listAccount == null) {
+        listAccount = [];
+    }
 
+    function showAccount() {
+        let showTable = '';
+        for (let i = 0; i < listAccount.length; i++) {
+            showTable += `
+            <tr>
+            <td>${listAccount[i].username}</td>
+            <td>${listAccount[i].email}</td>
+            <td>${listAccount[i].password} <button onclick="showUpdatePass()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill"
+             viewBox="0 0 16 16">
+            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+        </svg>
+    </button></td>
+</tr>`
 
+        }
+        document.getElementById('showTable').innerHTML = showTable;
+    }
+
+    showAccount()
+
+</script>
 </html>
